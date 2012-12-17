@@ -7,7 +7,7 @@ version := "0.0.1-SNAPSHOT"
 compileOrder := CompileOrder.JavaThenScala
 
 libraryDependencies <+= scalaVersion { sv =>
-  "com.dongxiguo" %% "zero-log" % "0.3.2"
+  "com.dongxiguo" % "zero-log_2.10" % "0.3.2"
 }
 
 crossScalaVersions :=
