@@ -10,8 +10,9 @@ libraryDependencies <+= scalaVersion { sv =>
   "com.dongxiguo" % "zero-log_2.10" % "0.3.2"
 }
 
-crossScalaVersions :=
-  Seq("2.10.0-RC5")
+//crossScalaVersions := Seq("2.10.0-RC5")
+
+scalaVersion := "2.10.0-RC5"
 
 scalacOptions ++= Vector("-unchecked", "-deprecation", "-Ywarn-all")
 
