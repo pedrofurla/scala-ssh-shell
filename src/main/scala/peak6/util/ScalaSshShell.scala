@@ -48,7 +48,7 @@ object ScalaSshShell {
 }
 
 class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
-  keysResourcePath: Option[String]) {
+  keysResourcePath: Option[String], iniatialCommands:Seq[String]=Nil) {
   import ScalaSshShell.logger
   import ScalaSshShell.formatter
   import ScalaSshShell.appender
@@ -150,6 +150,8 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
               il.setPrompt(name + "> ")
               il.settings = new scala.tools.nsc.Settings()
               il.settings.embeddedDefaults(getClass.getClassLoader)
+              
+              //il.settings.embeddedDefaults(scala.tools.nsc.Global.getClass.getClassLoader)
               il.settings.usejavacp.value = true
               il.settings.Yreplsync.value = true
               il.createInterpreter()
