@@ -181,7 +181,7 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
                      }""")
                 il.intp.quietRun(
                   """def exit = println("Use ctrl-D to exit shell.")""")
-
+                for(c <- initialCommands) il.intp.quietRun(c)
                 il.loop()
               } finally il.closeInterpreter()
 
