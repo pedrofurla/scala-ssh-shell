@@ -48,7 +48,7 @@ object ScalaSshShell {
 }
 
 class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
-  keysResourcePath: Option[String], iniatialCommands:Seq[String]=Nil) {
+  keysResourcePath: Option[String], initialCommands:Seq[String]=Nil) {
   import ScalaSshShell.logger
   import ScalaSshShell.formatter
   import ScalaSshShell.appender
