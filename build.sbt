@@ -12,7 +12,7 @@ libraryDependencies <+= scalaVersion { sv =>
 
 //crossScalaVersions := Seq("2.10.0-RC5")
 
-scalaVersion := "2.10.0-RC5"
+scalaVersion := "2.10.0"
 
 scalacOptions ++= Vector("-unchecked", "-deprecation", "-Ywarn-all")
 
