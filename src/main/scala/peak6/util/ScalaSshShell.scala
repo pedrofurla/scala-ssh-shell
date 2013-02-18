@@ -24,7 +24,7 @@ import scala.reflect.Manifest
 import scala.concurrent.ops.spawn
 
 object ScalaSshShell {
-  implicit val (logger, formatter, appender) = ZeroLoggerFactory.newLogger(this)
+  //implicit val (logger, formatter, appender) = ZeroLoggerFactory.newLogger(this)
 
   def main(args: Array[String]) {
     val sshd = new ScalaSshShell(port = 4444, name = "test", user = "user",
@@ -49,9 +49,9 @@ object ScalaSshShell {
 
 class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
   keysResourcePath: Option[String], initialCommands:Seq[String]=Nil) {
-  import ScalaSshShell.logger
-  import ScalaSshShell.formatter
-  import ScalaSshShell.appender
+  //import ScalaSshShell.logger
+  //import ScalaSshShell.formatter
+  //import ScalaSshShell.appender
 
   var bindings: Seq[(String, String, Any)] = IndexedSeq()
 
@@ -98,7 +98,8 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
     new org.apache.sshd.common.Factory[org.apache.sshd.server.Command] {
       def create() =
         new org.apache.sshd.server.Command {
-          logger.info("Instantiated")
+          //logger.info("Instantiated")
+          println("Instantiated")
           var in: java.io.InputStream = null
           var out: java.io.OutputStream = null
           var err: java.io.OutputStream = null
@@ -142,7 +143,8 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
           def start(env: org.apache.sshd.server.Environment) {
             thread = CrashingThread.start(Some("ScalaSshShell-" + name)) {
               val pw = new PrintWriter(out)
-              logger.info("New ssh client connected")
+              //logger.info("New ssh client connected")
+              println("New ssh client connected")
               pw.write("Connected to %s, starting repl...\n".format(name))
               pw.flush()
 
@@ -162,7 +164,8 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
                 new scala.tools.nsc.interpreter.JLineCompletion(il.intp))
 
               if (il.intp.reporter.hasErrors) {
-                logger.severe("Got errors, abandoning connection")
+                //logger.severe("Got errors, abandoning connection")
+                println("Got errors, abandoning connection")
                 return
               }
 
@@ -185,7 +188,8 @@ class ScalaSshShell(port: Int, name: String, user: String, passwd: String,
                 il.loop()
               } finally il.closeInterpreter()
 
-              logger.info("Exited repl, closing ssh.")
+              //logger.info("Exited repl, closing ssh.")
+              println("Exited repl, closing ssh.")
               pw.write("Bye.\r\n")
               pw.flush()
               exit.onExit(0)

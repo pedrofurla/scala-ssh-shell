@@ -17,7 +17,7 @@
 package peak6.util
 
 object CrashingThread {
-  implicit val (logger, formatter, appender) = ZeroLoggerFactory.newLogger(this)
+  //implicit val (logger, formatter, appender) = ZeroLoggerFactory.newLogger(this)
 
   def start(name: Option[String] = None,
             daemon: Boolean = false)(target: => Unit): CrashingThread = {
@@ -44,7 +44,8 @@ extends Thread() {
 	    sb.++=(f.toString)
             sb += '\n'
 	}.toString
-        logger.severe("Unhandled exception:\n" + e.toString + "\n" + stack)
+		println("Unhandled exception:\n" + e.toString + "\n" + stack)
+        //logger.severe("Unhandled exception:\n" + e.toString + "\n" + stack)
         System.exit(1)
     }
   }
